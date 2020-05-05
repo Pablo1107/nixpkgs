@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, fetchurl, gtk_engines, gtk-engine-murrine }:
+{ stdenv, fetchFromGitHub, fetchurl, glib, gtk-engine-murrine, gtk_engines, inkscape_0, optipng, sassc, which }:
 
 stdenv.mkDerivation rec {
   pname = "mojave-gtk-theme";
@@ -19,9 +19,30 @@ stdenv.mkDerivation rec {
 
   sourceRoot = "source";
 
+  nativeBuildInputs = [ glib inkscape_0 optipng sassc which ];
+
   buildInputs = [ gtk_engines ];
 
   propagatedUserEnvPkgs = [ gtk-engine-murrine ];
+
+  postPatch = ''
+    patchShebangs .
+
+    for f in render-assets.sh \
+             src/assets/gtk-2.0/render-assets.sh \
+             src/assets/gtk-3.0/common-assets/render-assets.sh \
+             src/assets/gtk-3.0/windows-assets/render-assets.sh \
+             src/assets/metacity-1/render-assets.sh \
+             src/assets/xfwm4/render-assets.sh
+    do
+      substituteInPlace $f \
+        --replace /usr/bin/inkscape ${inkscape_0}/bin/inkscape \
+        --replace /usr/bin/optipng ${optipng}/bin/optipng
+    done
+
+    # Shut up inkscape's warnings
+    export HOME="$NIX_BUILD_ROOT"
+  '';
 
   installPhase = ''
     patchShebangs .

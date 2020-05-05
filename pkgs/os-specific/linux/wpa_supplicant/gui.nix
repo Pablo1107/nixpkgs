@@ -1,4 +1,4 @@
-{ stdenv, mkDerivation, qtbase, qmake, inkscape, imagemagick, wpa_supplicant }:
+{ stdenv, mkDerivation, qtbase, qmake, inkscape_0, imagemagick, wpa_supplicant }:
 
 mkDerivation {
   name = "wpa_gui-${wpa_supplicant.version}";
@@ -6,7 +6,7 @@ mkDerivation {
   inherit (wpa_supplicant) src;
 
   buildInputs = [ qtbase ];
-  nativeBuildInputs = [ qmake inkscape imagemagick ];
+  nativeBuildInputs = [ qmake inkscape_0 imagemagick ];
 
   prePatch = ''
     cd wpa_supplicant/wpa_gui-qt4

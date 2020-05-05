@@ -6,6 +6,7 @@
 , ninja
 , hicolor-icon-theme
 , gtk3
+, inkscape_0
 , xorg
 , librsvg
 }:
@@ -32,6 +33,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     gtk3
     librsvg
+    inkscape_0
     meson
     ninja
     python3

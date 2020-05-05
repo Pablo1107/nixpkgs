@@ -1,5 +1,5 @@
 { stdenv, fetchFromGitHub, sassc, autoreconfHook, pkgconfig, gtk3, gnome3
-, gtk-engine-murrine, optipng, inkscape }:
+, gtk-engine-murrine, optipng, inkscape_0 }:
 
 stdenv.mkDerivation rec {
   pname = "arc-theme";
@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
     pkgconfig
     sassc
     optipng
-    inkscape
+    inkscape_0
     gtk3
   ];
 

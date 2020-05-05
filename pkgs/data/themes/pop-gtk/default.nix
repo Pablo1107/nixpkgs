@@ -4,7 +4,7 @@
 , ninja
 , sassc
 , gtk3
-, inkscape
+, inkscape_0
 , optipng
 , gtk-engine-murrine
 , gdk-pixbuf
@@ -27,7 +27,7 @@ stdenv.mkDerivation rec {
     ninja
     sassc
     gtk3
-    inkscape
+    inkscape_0
     optipng
   ];
 
@@ -46,9 +46,9 @@ stdenv.mkDerivation rec {
 
       substituteInPlace "$file" \
         --replace 'INKSCAPE="/usr/bin/inkscape"' \
-                  'INKSCAPE="inkscape"' \
+                  'INKSCAPE="${inkscape_0}/bin/inkscape"' \
         --replace 'OPTIPNG="/usr/bin/optipng"' \
-                  'OPTIPNG="optipng"'
+                  'OPTIPNG="${optipng}/bin/optipng"'
     done
   '';
 
