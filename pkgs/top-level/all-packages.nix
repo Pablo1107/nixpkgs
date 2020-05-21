@@ -20144,6 +20144,8 @@ in
   };
 
   linuxband = callPackage ../applications/audio/linuxband { };
+  
+  ledger2beancount = callPackage ../tools/text/ledger2beancount { };
 
   ledger2 = callPackage ../applications/office/ledger/2.6.3.nix { };
   ledger3 = callPackage ../applications/office/ledger {
